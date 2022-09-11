@@ -54,6 +54,7 @@ find_package(FFTS)
 include(FindOpenMP)
 
 # Use the local FindVulkan script until we can rely on all users having CMake 3.24 available, at which point we can remove it
+set(Vulkan_FIND_COMPONENTS glslang shaderc_combined)
 include(FindVulkan)
 
 if(NOT Vulkan_FOUND)
