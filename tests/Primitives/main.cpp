@@ -33,8 +33,7 @@
 	@brief Main code for Primitives test case
  */
 
-#define CATCH_CONFIG_RUNNER
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 #include "Primitives.h"
 
 using namespace std;

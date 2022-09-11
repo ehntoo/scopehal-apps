@@ -32,7 +32,7 @@
 	@author Andrew D. Zonenberg
 	@brief Unit test for Convert16BitSamples primitive
  */
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 #include "../../lib/scopehal/scopehal.h"
 #include "../../lib/scopehal/TestWaveformSource.h"
