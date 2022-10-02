@@ -49,6 +49,7 @@ jobs:
           libsigc++@2 \
           yaml-cpp \
           gtkmm3 \
+          glew \
           glfw
 
     - name: Clone and Build FFTS Library
@@ -85,6 +86,8 @@ jobs:
     - name: Build
       run: |
         export PATH=$(brew --prefix llvm@14)/bin:$PATH
+        export CC=clang
+        export CXX=clang++
         mkdir build
         cd build
         cmake \
