@@ -131,10 +131,12 @@ protected:
 
 	void DoProcessWaveformDensePackedEqualRateGeneric();
 #ifdef __x86_64__
+	__attribute__((target("avx,avx2,avx512f")))
 	void DoProcessWaveformDensePackedEqualRateAVX512F();
 #endif
 	void DoProcessWaveformDensePackedDoubleRateGeneric();
 #ifdef __x86_64__
+	__attribute__((target("avx,avx2,avx512f")))
 	void DoProcessWaveformDensePackedDoubleRateAVX512F();
 #endif
 	void DoProcessWaveformDensePackedUnequalRate();
