@@ -628,7 +628,7 @@ void ScopeSyncWizard::DoProcessWaveformDensePackedDoubleRateGeneric()
 }
 
 #ifdef __x86_64__
-__attribute__((target("avx512f")))
+__attribute__((target("arch=avx512f")))
 void ScopeSyncWizard::DoProcessWaveformDensePackedDoubleRateAVX512F()
 {
 	size_t len = m_primaryWaveform->size();
@@ -763,7 +763,7 @@ void ScopeSyncWizard::DoProcessWaveformDensePackedEqualRateGeneric()
 }
 
 #ifdef __x86_64__
-__attribute__((target("avx512f")))
+__attribute__((target("arch=avx512f")))
 void ScopeSyncWizard::DoProcessWaveformDensePackedEqualRateAVX512F()
 {
 	size_t len = m_primaryWaveform->size();
