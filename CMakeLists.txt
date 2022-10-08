@@ -129,8 +129,14 @@ add_subdirectory("${PROJECT_SOURCE_DIR}/src/ngscopeclient")
 
 # Unit tests
 if(BUILD_TESTING)
-	find_package(Catch2 REQUIRED)
-	include(Catch)
+	include(FetchContent)
+	FetchContent_Declare(
+		Catch2
+		GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+		GIT_TAG        62fd660583d3ae7a7886930b413c3c570e89786c # v2.13.9
+	)
+	FetchContent_MakeAvailable(Catch2)
+
 	add_subdirectory("${PROJECT_SOURCE_DIR}/tests")
 endif()
 

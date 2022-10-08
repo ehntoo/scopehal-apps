@@ -10,8 +10,6 @@ add_executable(Filters
 	FrequencyMeasurement.cpp
 )
 
-catch_discover_tests(Filters)
-
 ###############################################################################
 #Linker settings
 target_link_libraries(Filters

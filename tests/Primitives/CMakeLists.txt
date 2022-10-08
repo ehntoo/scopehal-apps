@@ -7,8 +7,6 @@ add_executable(Primitives
 	Sampling.cpp
 )
 
-catch_discover_tests(Primitives)
-
 ###############################################################################
 #Linker settings
 target_link_libraries(Primitives

@@ -4,8 +4,6 @@ add_executable(Acceleration
 	Buffers.cpp
 )
 
-catch_discover_tests(Acceleration)
-
 ###############################################################################
 #Linker settings
 target_link_libraries(Acceleration

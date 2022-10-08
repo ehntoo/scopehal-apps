@@ -48,18 +48,6 @@ jobs:
         sudo make install
         popd
 
-    - name: Clone and Build Catch2 Library
-      run: |
-        git clone https://github.com/catchorg/Catch2 /tmp/catch2
-        pushd /tmp/catch2
-        git checkout v2.13.2
-        mkdir build
-        cd build
-        cmake ..
-        make -j 4
-        sudo make install
-        popd
-
     - name: Install Vulkan SDK
       run: |
         pushd ~
