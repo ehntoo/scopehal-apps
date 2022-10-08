@@ -42,7 +42,7 @@ endif()
 
 # Package detection
 find_package(FFTS)
-include(FindOpenMP)
+find_package(OpenMP REQUIRED)
 
 # Use the local FindVulkan script until we can rely on all users having CMake 3.24 available, at which point we can remove it
 set(Vulkan_FIND_COMPONENTS glslang shaderc_combined)
@@ -83,7 +83,6 @@ endif()
 if(NOT OpenMP_CXX_FOUND)
 	message(FATAL_ERROR "glscopeclient requires OpenMP but your C++ compiler does not appear to support it.")
 endif()
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 
 # Documentation
 if(BUILD_DOCS)
