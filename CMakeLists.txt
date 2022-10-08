@@ -41,11 +41,7 @@ if(WIN32)
 endif()
 
 # Package detection
-find_package(PkgConfig)
-pkg_check_modules(GTKMM REQUIRED gtkmm-3.0)
-pkg_check_modules(SIGCXX REQUIRED sigc++-2.0)
 find_package(FFTS)
-include(FindOpenMP)
 find_package(glfw3 3.2 REQUIRED)
 
 # Use the local FindVulkan script until we can rely on all users having CMake 3.24 available, at which point we can remove it
@@ -67,33 +63,27 @@ if(NOT WIN32)
 endif()
 
 # Includes are incomplete in VulkanSDK 1.3.224.1 so we use the include path from MINGW64 mingw-w64-x86_64-glslang
-if(WIN32)
-	find_path(Glslang_BUILD_INCLUDE_DIR
-	  NAMES include/glslang/Include/glslang_c_interface.h
-	  HINTS
-		$ENV{GLSLANG_BUILD_PATH}
-	  )
-	mark_as_advanced(Glslang_BUILD_INCLUDE_DIR)
+# if(WIN32 AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+# 	find_path(Glslang_BUILD_INCLUDE_DIR
+# 	  NAMES include/glslang/Include/glslang_c_interface.h
+# 	  HINTS
+# 		$ENV{GLSLANG_BUILD_PATH}
+# 	  )
+# 	mark_as_advanced(Glslang_BUILD_INCLUDE_DIR)
 
-	if(Glslang_BUILD_INCLUDE_DIR)
-		include_directories($ENV{GLSLANG_BUILD_PATH}/include/glslang/Include)
-	else()
-		message(FATAL_ERROR "Glslang_BUILD_INCLUDE_DIR Not found")
-	endif()
+# 	if(Glslang_BUILD_INCLUDE_DIR)
+# 		include_directories($ENV{GLSLANG_BUILD_PATH}/include/glslang/Include)
+# 	else()
+# 		message(FATAL_ERROR "Glslang_BUILD_INCLUDE_DIR Not found")
+# 	endif()
 
-	link_directories($ENV{GLSLANG_BUILD_PATH}/lib)
-	link_directories($ENV{GLSLANG_BUILD_PATH}/lib/glslang)
-endif()
+# 	link_directories($ENV{GLSLANG_BUILD_PATH}/lib)
+# 	link_directories($ENV{GLSLANG_BUILD_PATH}/lib/glslang)
+# endif()
 
 if(NOT WIN32)
 	include(GNUInstallDirs)
 endif()
-
-# Configure and enable OpenMP
-if(NOT OpenMP_CXX_FOUND)
-	message(FATAL_ERROR "glscopeclient requires OpenMP but your C++ compiler does not appear to support it.")
-endif()
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 
 # Documentation
 if(BUILD_DOCS)

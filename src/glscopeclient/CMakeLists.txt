@@ -13,20 +13,13 @@ find_package(Vulkan REQUIRED)
 # Git is used for git-describe based version generation if we have it
 find_package(Git)
 
+find_package(PkgConfig)
+pkg_check_modules(GTKMM REQUIRED IMPORTED_TARGET gtkmm-3.0)
+
 # Additional libraries on Windows
 if(WIN32)
 	set(WIN_LIBS shlwapi)
-	# The packaging for yaml-cpp on mingw64 seems to be broken, not providing a
-	# libyaml-cpp.dll.a to be found by find_library inside of find_package(YAML)
-	# when using FindYAML.cmake, just set the library directly
-	set(YAML_LIBRARIES yaml-cpp)
-else()
-	find_package(YAML REQUIRED)
 endif()
-
-#Set up include paths
-include_directories(SYSTEM ${GTKMM_INCLUDE_DIRS} ${SIGCXX_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${YAML_INCLUDES})
-link_directories(${GTKMM_LIBRARY_DIRS} ${SIGCXX_LIBRARY_DIRS})
 
 #Set up versioning (with a dummy string for now if Git isn't present)
 if(Git_FOUND)
@@ -96,12 +89,10 @@ target_link_libraries(glscopeclient
 	scopeprotocols
 	scopeexports
 	graphwidget
-	${GTKMM_LIBRARIES}
-	${SIGCXX_LIBRARIES}
-	${OPENGL_LIBRARY}
+	PkgConfig::GTKMM
+	OpenGL::GL
 	${WIN_LIBS}
 	GLEW::GLEW
-	${YAML_LIBRARIES}
 	)
 
 ###############################################################################

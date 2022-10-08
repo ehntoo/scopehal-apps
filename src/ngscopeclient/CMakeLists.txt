@@ -1,13 +1,10 @@
 #Set up include paths
 include_directories(
 	SYSTEM
-	${SIGCXX_INCLUDE_DIRS}
-	${GTKMM_INCLUDE_DIRS}
 	${CMAKE_CURRENT_SOURCE_DIR}/../imgui/
 	${CMAKE_CURRENT_SOURCE_DIR}/../imgui/misc/cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/../implot/
 	)
-link_directories(${GTKMM_LIBRARY_DIRS} ${SIGCXX_LIBRARY_DIRS})
 find_package(glfw3 REQUIRED)
 find_package(PNG REQUIRED)
 
@@ -111,7 +108,5 @@ target_link_libraries(ngscopeclient
 	scopeexports
 	glfw
 	PNG::PNG
-	${GTKMM_LIBRARIES}
-	${SIGCXX_LIBRARIES}
 	)
 

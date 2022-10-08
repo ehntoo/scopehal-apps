@@ -1,4 +1,5 @@
 if(NOT LIBFFTS_FOUND)
+  find_package(PkgConfig)
   pkg_check_modules (LIBFFTS_PKG ffts)
 
   find_path(LIBFFTS_INCLUDE_DIR NAMES ffts.h
