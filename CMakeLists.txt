@@ -63,23 +63,23 @@ if(NOT WIN32)
 endif()
 
 # Includes are incomplete in VulkanSDK 1.3.224.1 so we use the include path from MINGW64 mingw-w64-x86_64-glslang
-# if(WIN32 AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-# 	find_path(Glslang_BUILD_INCLUDE_DIR
-# 	  NAMES include/glslang/Include/glslang_c_interface.h
-# 	  HINTS
-# 		$ENV{GLSLANG_BUILD_PATH}
-# 	  )
-# 	mark_as_advanced(Glslang_BUILD_INCLUDE_DIR)
+if(WIN32)
+	find_path(Glslang_BUILD_INCLUDE_DIR
+	  NAMES include/glslang/Include/glslang_c_interface.h
+	  HINTS
+		$ENV{GLSLANG_BUILD_PATH}
+	  )
+	mark_as_advanced(Glslang_BUILD_INCLUDE_DIR)
 
-# 	if(Glslang_BUILD_INCLUDE_DIR)
-# 		include_directories($ENV{GLSLANG_BUILD_PATH}/include/glslang/Include)
-# 	else()
-# 		message(FATAL_ERROR "Glslang_BUILD_INCLUDE_DIR Not found")
-# 	endif()
+	if(Glslang_BUILD_INCLUDE_DIR)
+		include_directories($ENV{GLSLANG_BUILD_PATH}/include/glslang/Include)
+	else()
+		message(FATAL_ERROR "Glslang_BUILD_INCLUDE_DIR Not found")
+	endif()
 
-# 	link_directories($ENV{GLSLANG_BUILD_PATH}/lib)
-# 	link_directories($ENV{GLSLANG_BUILD_PATH}/lib/glslang)
-# endif()
+	link_directories($ENV{GLSLANG_BUILD_PATH}/lib)
+	link_directories($ENV{GLSLANG_BUILD_PATH}/lib/glslang)
+endif()
 
 if(NOT WIN32)
 	include(GNUInstallDirs)
