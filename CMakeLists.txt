@@ -23,7 +23,7 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL
   set(WARNINGS "${WARNINGS} -Wno-gnu-zero-variadic-macro-arguments -Wno-unknown-warning-option")
 endif()
 
-set(CMAKE_CXX_FLAGS "-g ${WARNINGS} -mtune=native -fsigned-char")
+set(CMAKE_CXX_FLAGS "-g ${WARNINGS} -mtune=native -fsigned-char -DVULKAN_HPP_NO_TO_STRING -DVULKAN_HPP_NO_SMART_HANDLE")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 if(NOT CMAKE_BUILD_TYPE)
