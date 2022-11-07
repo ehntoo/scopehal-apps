@@ -40,7 +40,11 @@
 #include <vector>
 
 #include "Preference.h"
-#include "yaml-cpp/yaml.h"
+
+namespace YAML
+{
+    class Node;
+}
 
 enum class PreferenceTreeNodeType
 {
